@@ -1,0 +1,26 @@
+<!--
+ - Created by Deepak Singh on 8/2/2019.
+ -->
+
+<aura:component description="SignaturePad"
+                controller="SignatureController" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+
+    <ltng:require scripts="{!$Resource.signaturePad}" afterScriptsLoaded="{!c.doInit}"/>
+    <aura:attribute name="signaturePad" type="Object"/>
+    <aura:attribute name="isSpinnerShow" type="Boolean" default="false"/>
+    <div>
+        <aura:if isTrue="{!v.isSpinnerShow}">
+            <lightning:spinner variant="brand" size="medium"/>
+        </aura:if>
+        <lightning:card title="Signature Pad" class="slds-card_boundary" iconName="utility:brush">
+            <div class="slds-p-around--small slds-border--top">
+                <canvas id="signature-pad" aura:id="signature-pad" class="slds-box slds-size_1-of-1"></canvas>
+
+                <div class="slds-align_absolute-center slds-m-top--x-small">
+                    <lightning:button label="Save" onclick="{!c.save}" variant="brand"/>
+                    <lightning:button label="Clear" onclick="{!c.clearCanvas}" variant="neutral"/>
+                </div>
+            </div>
+        </lightning:card>
+    </div>
+</aura:component>
